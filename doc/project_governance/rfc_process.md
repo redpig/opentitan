@@ -22,7 +22,8 @@ This document outlines the basic structure of the RFC process, with the expectat
    * If requested, the TC could help to nominate a small group to shepherd the RFC.
 * If the RFC potentially contains information that could be certification-sensitive (guidance to be shared), send a note to security@opentitan.org first for feedback.
 * The RFC is shared publicly by filing a GitHub issue and tagging with the `RFC:Proposal` label.
-* Once the author is happy that the RFC is complete, they submit it to the Technical Committee by converting the label to `RFC:TC Review`.
+* Once the author is happy that the RFC is complete, they submit it to the Technical Committee by converting the label to `RFC:TC Review`
+  and the appropriate completion estimation label, e.g., `Target:2025-09`.
 * The Technical Committee will consider active RFCs in each meeting (those that have been marked with `RFC:TC Review` for at least a week).
   If an RFC saw large changes in the week it has been "ready" the TC may postpone judgment in order to allow more comment.
   They will decide whether to:
@@ -42,8 +43,27 @@ This document outlines the basic structure of the RFC process, with the expectat
 
 RFCs should be created at least for any major new piece of code (e.g. IP block), or cross-cutting changes that need careful consideration.
 Generally speaking, an RFC should be created when there is demand for one (especially when that request comes from a Committer).
-Although it is a power that is not expected to be deployed regularly, RFCs may be unilaterally approved/rejected by the Project Director.
-Even in these cases, they would likely still follow the normal review and feedback process.
+
+In cases where a contributor believes strongly in an RFC that has been rejected, alternative paths for realization may be explored.  For
+instance, if there is a strong desire to modify the keymgr in ways that the TC will not accept, the RFC author may attempt to resubmit
+the RFC as an experimental keymgr proposal where keymgr/ subtree is explicitly duplicated to keymgr\_variantname/ and highlight that the
+new keymgr with the variant behavior would not be included in any toplevels.  It is important that the overall project is able to capture
+contributions that are critical to partners and encourage in-tree collaboration.  If the RFC author is able to prove to the TC that their
+approach would not introduce undue risk to the rest of OpenTitan, it is much more likely to be approved.  Any subsequent merging of
+experimental efforts, as in the example keymgr taking in keymgr\_variantname functionality, would require a separate RFC approval to proceed.
+
+## Timelines and RFCs
+
+As described earlier, RFCs should not be proposed if there is no intention or ability to pursue their implementation.  As such, RFCs
+should include additional information related to the delivery timeline.  This estimation provides a means of collaborative planning
+across the project and facilitates relevant planning by the Technical Committee and Governing Board.
+
+When the RFC is submitted to the TC, it **must** be tagged with a `Target:YYYY-MM` label which indicates the year and month it is
+targeted for completion.  If the RFC is necessary for any given milestone, it **may** be labeled with the milestone, but it is not
+considered a replacement for a `Target` label.  That said, `Target` labels are point-in-time estimates and are not meant to be
+removed or replaced if incorrect.  New `Target` labels may be added after-the-fact to indicate a future anticipated delivery timeline,
+but it is not required.
+
 
 ## Potential future RFC process refinements
 
